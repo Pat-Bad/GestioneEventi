@@ -40,14 +40,17 @@ public class EventoDAO {
             System.out.println("Evento trovato " + eventoId);
 
 
-            /*em.getTransaction().begin();
+            em.getTransaction().begin();
             Evento eventoDaEliminare = em.find(Evento.class, eventoId);
             if (eventoDaEliminare !=null) {em.remove(eventoDaEliminare); System.out.println("Evento eliminato");}
             else {System.out.println("Id evento non trovato");}
-            em.getTransaction().commit();*/
-        } catch (Exception e) {
+            em.getTransaction().commit();
+
+        }
+        catch (Exception e) {
             if (em.getTransaction().isActive()) { em.getTransaction().rollback();
             }  e.printStackTrace();}
+        
         finally {em.close();}
 
         }
