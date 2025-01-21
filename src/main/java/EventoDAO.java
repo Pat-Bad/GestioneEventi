@@ -50,9 +50,8 @@ public class EventoDAO {
         catch (Exception e) {
             if (em.getTransaction().isActive()) { em.getTransaction().rollback();
             }  e.printStackTrace();}
-        
-        finally {em.close();}
 
+        finally {em.close();}
         }
     }
 
