@@ -24,7 +24,7 @@ public class EventoDAO {
             em.persist(evento1);
             em.getTransaction().commit();
             System.out.println("Id evento creato: " + evento1.getId());
-            System.out.println(evento1.toString());
+            System.out.println(evento1);
 
             em.getTransaction().begin();
             Evento evento2 = new Evento ("Concerto", "XG in Milan", 2000);
