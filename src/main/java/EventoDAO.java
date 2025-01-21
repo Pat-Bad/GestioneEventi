@@ -24,6 +24,7 @@ public class EventoDAO {
             em.persist(evento1);
             em.getTransaction().commit();
             System.out.println("Id evento creato: " + evento1.getId());
+            System.out.println(evento1.toString());
 
             em.getTransaction().begin();
             Evento evento2 = new Evento ("Concerto", "XG in Milan", 2000);
@@ -38,6 +39,7 @@ public class EventoDAO {
             Evento eventoTrovato = em.find(Evento.class, eventoId);
             em.getTransaction().commit();
             System.out.println("Evento trovato " + eventoId);
+
 
 
             em.getTransaction().begin();

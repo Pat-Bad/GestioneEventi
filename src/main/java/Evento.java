@@ -81,6 +81,6 @@ public class Evento {
 
     @Override
     public String toString() {
-        return tipoEvento + ", " + titolo + ", " + descrizione;
+        return dataEvento + ", " + titolo + ", " + descrizione;
     }
 }
