@@ -24,7 +24,7 @@ public class Evento {
 
     @Column(name = "numeroMassimoPartecipanti")
     private int numeroMassimoPartecipanti;
-    @OneToOne (mappedBy = "evento")
+    @OneToOne (mappedBy = "location")
     private Location luogo;
 
     //costruttore

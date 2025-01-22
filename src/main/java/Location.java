@@ -13,7 +13,7 @@ public class Location {
     private String nome;
     @Column (name = "citta")
     private String citta;
-    //ONETOONE CON L'EVENTO
+    //ONETOONE CON L'EVENTO. un evento ha una location
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name= "evento_id")
     private Evento evento_id;
@@ -50,10 +50,4 @@ public class Location {
         return "Dettagli location: " + citta + ", presso " + nome;
     }
 
-
-    public void addEvento(Evento evento) {
-        eventi.add(evento);
-        evento.setLocation(this);
-
     }
-}
