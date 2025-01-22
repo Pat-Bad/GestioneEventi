@@ -60,7 +60,7 @@ public class Persona {
     public String getSesso(){
         return this.sesso;
     }
-    public String getListaPartecipazioni(){
+    public List<String> getListaPartecipazioni(){
         return this.listaPartecipazioni;
     }
 
@@ -84,7 +84,6 @@ public class Persona {
     }
 
     public void setListaPartecipazioni(String listaPartecipazioni) {
-        this.listaPartecipazioni = listaPartecipazioni;
     }
 
     //toString

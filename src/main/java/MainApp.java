@@ -27,9 +27,7 @@ public class MainApp {
     Location location1 = new Location("Mediolanum Forum", "Milano");
     LocationDAO ld = new locationDAOImpl();
     ld.save(location1);
-
-
-
+    
             }
 
 
