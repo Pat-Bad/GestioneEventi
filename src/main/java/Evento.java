@@ -24,8 +24,10 @@ public class Evento {
 
     @Column(name = "numeroMassimoPartecipanti")
     private int numeroMassimoPartecipanti;
-    @OneToOne (mappedBy = "location")
-    private Location luogo;
+
+    @ManyToOne
+    @JoinColumn(name="location_id") //chiave esterna su db
+    private Location location;
 
     //costruttore
     public Evento(){};
@@ -57,6 +59,9 @@ public class Evento {
         return this.numeroMassimoPartecipanti;
     }
 
+    public Location getLocation() {
+        return location;
+    }
     // metodi SET
 
     public void setId(Long id){
@@ -83,6 +88,9 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
 
     @Override
     public String toString() {

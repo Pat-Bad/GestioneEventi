@@ -13,10 +13,9 @@ public class Location {
     private String nome;
     @Column (name = "citta")
     private String citta;
-    //ONETOONE CON L'EVENTO. un evento ha una location
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name= "evento_id")
-    private Evento evento_id;
+    //metto attributo che c'è in evento per collegarlo
+    @OneToMany(mappedBy = "location")
+    private List<Evento> listaEventi = new ArrayList<>();
 
     //costruttori
     public Location(){};
@@ -36,12 +35,20 @@ public class Location {
         return citta;
     }
 
+    public List<Evento> getListaEventi() {
+        return listaEventi;
+    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
 
     public void setCitta(String citta) {
         this.citta = citta;
+    }
+
+    public void setListaEventi(List<Evento> listaEventi) {
+        this.listaEventi = listaEventi;
     }
 
     //TOSTRING
