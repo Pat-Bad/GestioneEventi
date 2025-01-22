@@ -1,6 +1,8 @@
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -23,7 +25,7 @@ public class Persona {
     @Column (name = "sesso")
     private String sesso;
     @Column (name = "listaPartecipazioni")
-    private String listaPartecipazioni;
+    private List<String> listaPartecipazioni = new ArrayList<>();
 
     //costruttori
 
