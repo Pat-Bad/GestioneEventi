@@ -1,5 +1,7 @@
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "evento")
@@ -23,7 +25,7 @@ public class Evento {
     @Column(name = "numeroMassimoPartecipanti")
     private int numeroMassimoPartecipanti;
     @OneToOne (mappedBy = "evento")
-    private Location location;
+    private Location luogo;
 
     //costruttore
     public Evento(){};
@@ -81,8 +83,10 @@ public class Evento {
         this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
     }
 
+
     @Override
     public String toString() {
         return dataEvento + ", " + titolo + ", " + descrizione;
     }
+
 }

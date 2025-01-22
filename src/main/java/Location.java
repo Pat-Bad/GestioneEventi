@@ -1,5 +1,8 @@
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table (name = "location")
 public class Location {
@@ -11,9 +14,9 @@ public class Location {
     @Column (name = "citta")
     private String citta;
     //ONETOONE CON L'EVENTO
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name= "id")
-    private Evento evento;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name= "evento_id")
+    private Evento evento_id;
 
     //costruttori
     public Location(){};
@@ -48,4 +51,9 @@ public class Location {
     }
 
 
+    public void addEvento(Evento evento) {
+        eventi.add(evento);
+        evento.setLocation(this);
+
+    }
 }
