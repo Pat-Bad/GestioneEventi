@@ -1,5 +1,4 @@
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -23,8 +22,11 @@ public class Evento {
 
     @Column(name = "numeroMassimoPartecipanti")
     private int numeroMassimoPartecipanti;
+    @OneToOne (mappedBy = "evento")
+    private Location location;
 
     //costruttore
+    public Evento(){};
 
     public Evento(String titolo, String descrizione, int numeroMassimoPartecipanti){
         this.titolo = titolo;
