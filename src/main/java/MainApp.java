@@ -12,6 +12,7 @@ public class MainApp {
 
         Evento concerto = new Evento("Twice in Milan", "Second world tour", 8000);
         concerto.setDataEvento(LocalDate.of(2025, 11, 5));
+        concerto.setTipoEvento("Concerto");
         eventoDAO.save(concerto);
 
         Persona persona1 = new Persona("Patricia", "Badji", "ciao@ciao.com", LocalDate.of(1989, 6, 29), "F");
@@ -22,9 +23,9 @@ public class MainApp {
         partecipazione.setPersona(persona1);
         partecipazioneDAO.save(partecipazione);
 
-
         Partecipazione partecipazioneTrovata = partecipazioneDAO.findById(partecipazione.getId());
         System.out.println("Partecipazione trovata: " + partecipazioneTrovata.getId());
+        
 
     }
 }
