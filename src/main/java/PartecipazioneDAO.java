@@ -1,5 +1,6 @@
 public interface PartecipazioneDAO {
-    public static void save(Partecipazione partecipazione){};
-    public static void deleteById(Long id){};
+
+    void save(Partecipazione partecipazione);
     Partecipazione findById(Long Id);
+    void deleteById(Long id);
 }

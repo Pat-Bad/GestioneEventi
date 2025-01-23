@@ -1,9 +1,11 @@
 import jakarta.persistence.EntityManager;
 
-public class locationDAOImpl implements LocationDAO{
+import static org.example.EntityManagerUtil.getEntityManager;
 
+public class locationDAOImpl implements LocationDAO{
+    EntityManager em = getEntityManager();
     public void deleteById(Long id) {
-        EntityManager em = MainApp.getEntityManager();
+
         try{
             em.getTransaction().begin();
             Location LocationDaEliminare = em.find(Location.class,id);
@@ -19,10 +21,8 @@ public class locationDAOImpl implements LocationDAO{
 
 
     }
-
     @Override
     public void save(Location location){
-        EntityManager em = MainApp.getEntityManager();
         try{
             em.getTransaction().begin();
             if (location.getId() == null){
@@ -40,7 +40,6 @@ public class locationDAOImpl implements LocationDAO{
 
     @Override
     public Location findById(Long Id) {
-        EntityManager em = MainApp.getEntityManager();
         try{
             em.getTransaction().begin();
             Location locationCercata = em.find(Location.class,Id);

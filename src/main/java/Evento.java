@@ -1,7 +1,5 @@
 import jakarta.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "evento")
@@ -9,19 +7,14 @@ public class Evento {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "titolo")
     private String titolo;
-
     @Column(name = "dataEvento")
     private LocalDate dataEvento;
-
     @Column(name = "descrizione")
     private String descrizione;
-
     @Column(name = "tipoEvento")
     private String tipoEvento;
-
     @Column(name = "numeroMassimoPartecipanti")
     private int numeroMassimoPartecipanti;
 
@@ -62,32 +55,22 @@ public class Evento {
     public Location getLocation() {
         return location;
     }
+
     // metodi SET
-
-    public void setId(Long id){
-        this.id = id;
-    }
-
     public void setTitolo(String titolo) {
         this.titolo = titolo;
     }
-
     public void setDataEvento(LocalDate dataEvento) {
         this.dataEvento = dataEvento;
     }
-
     public void setDescrizione(String descrizione) {
         this.descrizione = descrizione;
     }
-
     public void setTipoEvento(String tipoEvento) {
         this.tipoEvento = tipoEvento;
     }
-
     public void setNumeroMassimoPartecipanti(int numeroMassimoPartecipanti) {
-        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;
-    }
-
+        this.numeroMassimoPartecipanti = numeroMassimoPartecipanti;}
     public void setLocation(Location location) {
         this.location = location;
     }

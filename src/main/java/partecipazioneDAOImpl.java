@@ -1,17 +1,19 @@
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityTransaction;
+
 import static org.example.EntityManagerUtil.getEntityManager;
 
-public class personaDAOImpl implements PersonaDAO {
+public class partecipazioneDAOImpl implements PartecipazioneDAO {
     EntityManager em = getEntityManager();
 
-    @Override
-    public void save(Persona persona) {
 
-        try { em.getTransaction().begin();
-            if (persona.getId() == null) {
-                em.persist(persona);
+    public void save(Partecipazione partecipazione) {
+
+        try {em.getTransaction().begin();
+            if (partecipazione.getId() == null) {
+                em.persist(partecipazione); // Insert new Partecipazione
             } else {
-                em.merge(persona);
+                em.merge(partecipazione); // Update existing Partecipazione
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -19,16 +21,18 @@ public class personaDAOImpl implements PersonaDAO {
                 em.getTransaction().rollback();
             }
             e.printStackTrace();
-        } finally {em.close();}
+        }finally {em.close();}
     }
 
     @Override
-    public Persona findById(Long id) {
+    public Partecipazione findById(Long id) {
+
 
         try {em.getTransaction().begin();
-            Persona personaCercata = em.find(Persona.class, id);
+
+            Partecipazione partecipazioneCercata = em.find(Partecipazione.class, id);
             em.getTransaction().commit();
-            return personaCercata;
+            return partecipazioneCercata;
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
@@ -40,12 +44,12 @@ public class personaDAOImpl implements PersonaDAO {
 
     @Override
     public void deleteById(Long id) {
-       em.getTransaction().begin();
-        try {
+
+        try {em.getTransaction().begin();
             em.getTransaction().begin();
-            Persona personaDaEliminare = em.find(Persona.class, id);
-            if (personaDaEliminare != null) {
-                em.remove(personaDaEliminare);
+            Partecipazione partecipazioneDaEliminare = em.find(Partecipazione.class, id);
+            if (partecipazioneDaEliminare != null) {
+                em.remove(partecipazioneDaEliminare);
             }
             em.getTransaction().commit();
         } catch (Exception e) {
@@ -56,6 +60,3 @@ public class personaDAOImpl implements PersonaDAO {
         } finally {em.close();}
     }
 }
-
-
-

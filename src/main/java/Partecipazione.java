@@ -6,12 +6,14 @@ public class Partecipazione {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column (name = "persona")
-    private String persona;
-    @Column (name = "evento")
-    private String evento;
+    @ManyToOne
+    @JoinColumn(name = "persona_id")
+    private Persona persona;
     @Column (name = "stato")
     private String stato;
+    @ManyToOne
+    @JoinColumn(name = "evento_id")
+    private Evento evento;
 
     //costruttori
     public Partecipazione(){};
@@ -20,7 +22,7 @@ public class Partecipazione {
         return id;
     }
 
-    public Partecipazione(String p, String e, String s){
+    public Partecipazione( Persona p, Evento e, String s){
         this.persona = p;
         this.evento = e;
         this.stato = s;
@@ -28,21 +30,21 @@ public class Partecipazione {
 
     //GET E SET
 
-    public String getPersona() {
+    public Persona getPersona() {
         return persona;
     }
-    public String getEvento() {
+    public Evento getEvento() {
         return evento;
     }
     public String getStato() {
         return stato;
     }
 
-    public void setPersona(String persona) {
+    public void setPersona(Persona persona) {
         this.persona = persona;
     }
 
-    public void setEvento(String evento) {
+    public void setEvento(Evento evento) {
         this.evento = evento;
     }
 

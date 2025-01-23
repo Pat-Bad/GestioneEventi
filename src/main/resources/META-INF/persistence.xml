@@ -1,5 +1,5 @@
 <persistence xmlns="https://jakarta.ee/xml/ns/persistence" version="3.1">
-    <persistence-unit name="gestioneeventi">
+    <persistence-unit name="gestioneeventiPU">
         <class>org.gestioneeventi.Evento</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />

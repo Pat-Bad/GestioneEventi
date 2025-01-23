@@ -7,28 +7,43 @@ import java.time.LocalDate;
 public class MainApp {
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("gestioneeventi");
+
     public static EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
+
     public static void close() {
-        emf.close();}
+        emf.close();
+    }
 
-    public static void main (String[] args){
-        Evento concerto = new Evento ("Twice in Milan", "Second world tour", 8000);
-        EventoDAO ed = new EventoDAOImpl();
-        concerto.setDataEvento(LocalDate.of(2025,11,5));
-        ed.save(concerto);
+    public static void main(String[] args) {
+        EntityManager em = getEntityManager();
+        EventoDAO eventoDAO = new EventoDAOImpl(em);
+        PersonaDAO personaDAO = new personaDAOImpl(em);
+        PartecipazioneDAO partecipazioneDAO = new partecipazioneDAOImpl(em);
 
-    Persona persona1 = new Persona ("Patricia", "Badji", "ciao@ciao.com", LocalDate.of(1989,06,29), "F");
-    persona1.setListaPartecipazioni("idk");
-    PersonaDAO pd = new personaDAOImpl();
-    pd.save(persona1);
+        try {
+            // Create and save an Evento
+            Evento concerto = new Evento("Twice in Milan", "Second world tour", 8000);
+            concerto.setDataEvento(LocalDate.of(2025, 11, 5));
+            eventoDAO.save(concerto);
 
-    Location location1 = new Location("Mediolanum Forum", "Milano");
-    LocationDAO ld = new locationDAOImpl();
-    ld.save(location1);
-    
-            }
+            // Create and save a Persona
+            Persona persona1 = new Persona("Patricia", "Badji", "ciao@ciao.com", LocalDate.of(1989, 6, 29), "F");
+            personaDAO.save(persona1);
 
+            // Create and save a Partecipazione
+            Partecipazione partecipazione = new Partecipazione();
+            partecipazione.setEvento(concerto);
+            partecipazione.setPersona(persona1);
+            PartecipazioneDAO.save(partecipazione);
 
+            // Find and print the Partecipazione
+            Partecipazione partecipazioneTrovata = partecipazioneDAO.findById(partecipazione.getId());
+            System.out.println("Partecipazione trovata: " + partecipazioneTrovata.getId());
+        } finally {
+            em.close();
+            close();
+        }
+    }
 }
